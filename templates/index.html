@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular News</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+</head>
+<body>
+
+<h1>Latest News</h1>
+
+<div class="news-list" id="newsBox">
+    {% for article in news %}
+    <div class="news-item">
+
+        {% if article.urlToImage %}
+        <img src="{{ article.urlToImage }}" width="300">
+        {% endif %}
+
+        <h3>{{ article.title or "No title" }}</h3>
+        <p>{{ article.description or "No description" }}</p>
+
+        <p>
+            {{ article.publishedAt[:10] if article.publishedAt else "" }} |
+            {{ article.author or "Unknown" }}
+        </p>
+
+        <a href="{{ article.url }}" target="_blank">Read more</a>
+
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+<script>
+  
+function loadNews() {
+    fetch('/news?time=' + new Date().getTime())
+    .then(res => res.json())
+    .then(data => {
+        const box = document.getElementById('newsBox');
+        box.innerHTML = "";
+
+        data.articles.forEach(article => {
+            box.innerHTML += `
+                <div class="news-item">
+                    ${article.urlToImage ? `<img src="${article.urlToImage}" width="300">` : ''}
+                    <h3>${article.title || "No title"}</h3>
+                    <p>${article.description || ""}</p>
+                    <p>
+                        ${(article.publishedAt || "").slice(0,10)} | 
+                        ${article.author || "Unknown"}
+                    </p>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                </div>
+            `;
+        });
+    });
+}
+
+// first load
+loadNews();
+
+// auto refresh every 5 sec
+setInterval(loadNews, 5000);
+
+</script>
+</html>
