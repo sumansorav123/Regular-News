@@ -1,0 +1,380 @@
+/* ============================================
+   Regular News - Modern Responsive Styles
+   Interactive & Fully Responsive Design
+   ============================================ */
+
+/* CSS Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9eef5 100%);
+    color: #1a2c3e;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+/* Main Container */
+body {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Page Title */
+h1 {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    border-radius: 2px;
+}
+
+/* News Grid Layout */
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* News Card - Interactive */
+.news-item {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.news-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(42, 82, 152, 0.3);
+}
+
+/* Image Styling */
+.news-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Content Area */
+.news-item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 1.25rem 1.25rem 0.75rem;
+    color: #1e3c72;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s;
+}
+
+.news-item:hover h3 {
+    color: #2a5298;
+}
+
+.news-item p {
+    color: #4a5568;
+    margin: 0 1.25rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Meta Information */
+.news-item p:last-of-type {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
+/* Read More Button */
+.news-item a {
+    display: inline-block;
+    margin: 0 1.25rem 1.25rem;
+    padding: 0.625rem 1.25rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.news-item a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.news-item a:hover::before {
+    left: 100%;
+}
+
+.news-item a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .news-list {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+    
+    .news-item h3 {
+        font-size: 1.125rem;
+        margin: 1rem 1rem 0.5rem;
+    }
+    
+    .news-item p {
+        font-size: 0.875rem;
+        margin: 0 1rem 0.75rem;
+    }
+    
+    .news-item a {
+        margin: 0 1rem 1rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .news-item img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .news-list {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .news-item img {
+        height: 200px;
+    }
+    
+    .news-item h3 {
+        font-size: 1rem;
+    }
+    
+    .news-item p {
+        font-size: 0.8125rem;
+        -webkit-line-clamp: 4;
+    }
+}
+
+/* Tablet Landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .news-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+/* Loading Animation (optional enhancement) */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+}
+
+/* Focus States for Accessibility */
+.news-item a:focus {
+    outline: 3px solid #2a5298;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .news-item {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .news-item a {
+        display: none;
+    }
+}
+
+/* Optional: Add subtle gradient background to cards on hover */
+.news-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(42, 82, 152, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+.news-item:hover::after {
+    opacity: 1;
+}
+
+/* Empty State Styling */
+.news-list:empty::before {
+    content: "No news articles available at the moment";
+    display: block;
+    text-align: center;
+    padding: 3rem;
+    color: #718096;
+    font-size: 1.125rem;
+    grid-column: 1 / -1;
+}
+
+/* Optional: Add icons to meta information */
+.news-item p:last-of-type {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.news-item p:last-of-type::before {
+    content: "📅";
+    font-size: 0.75rem;
+}
+
+.news-item p:last-of-type span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.news-item p:last-of-type span:last-child::before {
+    content: "✍️";
+    margin-right: 0.25rem;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+    
+    .news-item {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(71, 85, 105, 0.3);
+    }
+    
+    .news-item h3 {
+        color: #e2e8f0;
+    }
+    
+    .news-item p {
+        color: #94a3b8;
+    }
+    
+    .news-item p:last-of-type {
+        border-top-color: #334155;
+        color: #64748b;
+    }
+    
+    .news-item:hover h3 {
+        color: #60a5fa;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #1e293b;
+    }
+}
